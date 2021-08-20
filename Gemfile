@@ -12,3 +12,4 @@ gem 'viter', github: 'qinmingyuan/viter'
 gem 'default_form', github: 'qinmingyuan/default_form'
 
 gem 'pry'
+gem 'amazing_print'

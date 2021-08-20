@@ -6,7 +6,7 @@ module Dingtalk
     attr_reader :http
 
     def initialize
-      @http = HTTPX.with(**RailsWechat.config.httpx)
+      @http = HTTPX.with(**RailsDingtalk.config.httpx)
     end
 
     def get(path, headers: {}, params: {}, base: nil, **options)

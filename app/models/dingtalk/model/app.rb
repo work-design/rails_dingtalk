@@ -17,5 +17,25 @@ module Dingtalk
       @api = Api::Base.new(self)
     end
 
+    def refresh_access_token
+      r = api.token
+      if r['access_token']
+        store_access_token(r)
+      else
+        logger.debug "  ==========> #{r['errmsg']}"
+      end
+    end
+
+    def store_access_token(token_hash)
+      self.access_token = token_hash['access_token']
+      self.access_token_expires_at = Time.current + token_hash['expires_in'].to_i
+      self.save
+    end
+
+    def access_token_valid?
+      return false unless access_token_expires_at.acts_like?(:time)
+      access_token_expires_at > Time.current
+    end
+
   end
 end

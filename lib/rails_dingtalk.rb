@@ -1,5 +1,2 @@
 require 'rails_dingtalk/engine'
-
-module RailsDingtalk
-
-end
+require 'rails_dingtalk/config'
