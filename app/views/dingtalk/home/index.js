@@ -1,6 +1,5 @@
 import * as dd from 'dingtalk-jsapi'
 
-alert('dddd')
 dd.ready(() => {
   dd.runtime.permission.requestAuthCode({
     corpId: 'ding9f5ed2cec249700e35c2f4657eb6378f',
@@ -9,6 +8,9 @@ dd.ready(() => {
       div.innerText = info.code
       console.log(info)
       alert(info.code)
+    },
+    onFail(res) {
+      alert('dd error: ' + JSON.stringify(res))
     }
   })
 
