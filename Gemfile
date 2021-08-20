@@ -1,12 +1,11 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
-
-# Specify your gem's dependencies in rails_dingtalk.gemspec.
 gemspec
 
-group :development do
-  gem 'sqlite3'
-end
+gem 'pg'
+gem 'puma'
 
-# To use a debugger
-# gem 'byebug', group: [:development, :test]
+gem 'rails_ui', github: 'work-design/rails_ui'
+gem 'rails_com', github: 'work-design/rails_com'
+
+gem 'pry'
