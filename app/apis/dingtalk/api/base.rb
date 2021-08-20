@@ -12,6 +12,10 @@ module Dingtalk::Api
       @client.get 'gettoken', params: { appkey: app.app_key, appsecret: app.app_secret }, base: BASE
     end
 
+    def jsapi_ticket
+      get 'get_jsapi_ticket', base: BASE
+    end
+
     def get(path, params: {}, headers: {}, base: nil, as: nil)
       with_access_token(params) do |with_token_params|
         @client.get path, headers: headers, params: with_token_params, base: base, as: as
