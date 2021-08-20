@@ -22,7 +22,7 @@ module Dingtalk
       if r['access_token']
         store_access_token(r)
       else
-        logger.debug "  ==========> #{r['errmsg']}"
+        logger.debug "\e[35m  #{r['errmsg']}  \e[0m"
       end
     end
 
