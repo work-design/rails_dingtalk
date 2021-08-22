@@ -8,6 +8,16 @@ dd.ready(() => {
       div.innerText = info.code
       console.log(info)
       alert(info.code)
+      fetch(ele.href, {
+        method: method,
+        headers: {
+          Accept: 'text/vnd.turbo-stream.html'
+        }
+      }).then(response => {
+        return response.text()
+      }).then(body => {
+        Turbo.renderStreamMessage(body)
+      })
     },
     onFail(res) {
       alert('dd error: ' + JSON.stringify(res))

@@ -8,6 +8,11 @@ Rails.application.routes.draw do
     controller :home do
       get :index
     end
+    resources :apps do
+      collection do
+        get :info
+      end
+    end
   end
 
 end

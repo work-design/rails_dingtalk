@@ -3,7 +3,8 @@ module Dingtalk::Api
     BASE = 'https://oapi.dingtalk.com/'
 
     def getuserinfo(code)
-      post 'topapi/v2/user/getuserinfo', code: code
+      r = post 'topapi/v2/user/getuserinfo', code: code
+      r['result']
     end
 
   end
