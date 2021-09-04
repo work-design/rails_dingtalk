@@ -1,0 +1,8 @@
+zh:
+  activerecord:
+    enum:
+      dingtalk/app:
+        type:
+          Dingtalk::NormalApp: 普通App
+          Dingtalk::NewApp: NewApp
+
