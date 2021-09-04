@@ -1,20 +1,13 @@
 GIT
-  remote: https://github.com/qinmingyuan/default_form.git
-  revision: 476ba7231079b1071415ad4e953b55ce16ae1d0d
-  specs:
-    default_form (1.5.1)
-      rails_com (~> 1.2)
-
-GIT
   remote: https://github.com/qinmingyuan/viter.git
-  revision: 997cbc807babe4380f76ad0051518de12135702e
+  revision: a6c36456e695b32d427179c1bfc1c0df2c66792c
   specs:
-    viter (0.1.0)
+    viter (0.1)
       rails
 
 GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: 71c4b772b70c2bb74e6715e3def6090b75365ea0
+  revision: 806cc320be3056c8c53cc6c8d89461216e898546
   specs:
     rails_com (1.2.9)
       acme-client
@@ -24,14 +17,14 @@ GIT
       http-form_data (~> 2.3)
       httpx (~> 0.16)
       kaminari
-      rails (~> 6.1)
+      rails (>= 6.1)
       turbo-rails
 
 GIT
   remote: https://github.com/work-design/rails_ui.git
-  revision: 60778d85c650357871ece6410ff61bbd9f9ebdec
+  revision: b915e58f8582043db65dccf5ea014fc73ef98dc6
   specs:
-    rails_ui (0.1.0)
+    rails_ui (0.0.1)
       rails
 
 PATH
@@ -43,7 +36,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    acme-client (2.0.8)
+    acme-client (2.0.9)
       faraday (>= 0.17, < 2.0.0)
     actioncable (6.1.4.1)
       actionpack (= 6.1.4.1)
@@ -111,14 +104,16 @@ GEM
     closure_tree (7.3.0)
       activerecord (>= 4.2.10)
       with_advisory_lock (>= 4.0.0)
-    coderay (1.1.3)
     concurrent-ruby (1.1.9)
     connection_pool (2.2.5)
     crass (1.0.6)
+    debug (1.0.0.rc2)
+      irb
+      reline (>= 0.2.7)
     default_where (2.3.0)
       activerecord (>= 4.0, <= 7.0)
     erubi (1.10.0)
-    faraday (1.7.0)
+    faraday (1.7.1)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
       faraday-excon (~> 1.1)
@@ -141,11 +136,14 @@ GEM
       activesupport (>= 5.0)
     http-2-next (0.5.0)
     http-form_data (2.3.0)
-    httpx (0.16.1)
+    httpx (0.17.0)
       http-2-next (>= 0.4.1)
       timers
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
+    io-console (0.5.9)
+    irb (1.3.7)
+      reline (>= 0.2.7)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.1)
@@ -165,16 +163,15 @@ GEM
       mini_mime (>= 0.1.1)
     marcel (1.0.1)
     method_source (1.0.0)
-    mini_mime (1.1.0)
+    mini_mime (1.1.1)
     minitest (5.14.4)
+    minitest-hooks (1.5.0)
+      minitest (> 5.3)
     multipart-post (2.1.1)
     nio4r (2.5.8)
-    nokogiri (1.12.3-x86_64-darwin)
+    nokogiri (1.12.4-x86_64-darwin)
       racc (~> 1.4)
     pg (1.2.3)
-    pry (0.14.1)
-      coderay (~> 1.1)
-      method_source (~> 1.0)
     puma (5.4.0)
       nio4r (~> 2.0)
     racc (1.5.2)
@@ -199,7 +196,7 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.4.1)
+    rails-html-sanitizer (1.4.2)
       loofah (~> 2.3)
     railties (6.1.4.1)
       actionpack (= 6.1.4.1)
@@ -208,9 +205,14 @@ GEM
       rake (>= 0.13)
       thor (~> 1.0)
     rake (13.0.6)
+    rdoc (6.3.2)
     redis (4.4.0)
+    reline (0.2.7)
+      io-console (~> 0.5)
     ruby2_keywords (0.0.5)
-    sidekiq (6.2.1)
+    sdoc (2.2.0)
+      rdoc (>= 5.0)
+    sidekiq (6.2.2)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
@@ -223,7 +225,7 @@ GEM
       sprockets (>= 3.0.0)
     thor (1.1.0)
     timers (4.3.3)
-    turbo-rails (0.7.4)
+    turbo-rails (0.7.11)
       rails (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
@@ -239,13 +241,14 @@ PLATFORMS
 
 DEPENDENCIES
   amazing_print
-  default_form!
+  debug (>= 1.0.0.rc)
+  minitest-hooks
   pg
-  pry
   puma
   rails_com!
   rails_dingtalk!
   rails_ui!
+  sdoc
   sidekiq
   viter!
 

@@ -6,11 +6,14 @@ gem 'pg'
 gem 'puma'
 gem 'sidekiq'
 
+gem 'viter', github: 'qinmingyuan/viter'
 gem 'rails_ui', github: 'work-design/rails_ui'
 gem 'rails_com', github: 'work-design/rails_com'
 
-gem 'viter', github: 'qinmingyuan/viter'
-gem 'default_form', github: 'qinmingyuan/default_form'
-
-gem 'pry'
 gem 'amazing_print'
+
+group :development, :test do
+  gem 'debug', '>= 1.0.0.rc'
+  gem 'minitest-hooks'
+  gem 'sdoc'
+end
