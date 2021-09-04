@@ -1,7 +1,8 @@
 module RailsDingtalk
   class Engine < ::Rails::Engine
+
     config.autoload_paths += Dir[
-      "#{config.root}/app/models/govern"
+      "#{config.root}/app/models/app"
     ]
 
     config.generators do |g|
@@ -15,5 +16,6 @@ module RailsDingtalk
       }
       #g.templates.unshift File.expand_path('lib/templates', RailsCom::Engine.root)
     end
+
   end
 end

@@ -3,6 +3,7 @@ module Dingtalk
     extend ActiveSupport::Concern
 
     included do
+      attribute :type, :string
       attribute :name, :string
       attribute :agent_id, :string
       attribute :app_key, :string
@@ -10,6 +11,7 @@ module Dingtalk
       attribute :corp_id, :string
       attribute :access_token, :string
       attribute :access_token_expires_at, :datetime
+      attribute :refresh_token, :string
       attribute :jsapi_ticket, :string
       attribute :oauth2_state, :string
       attribute :jsapi_ticket_expires_at, :datetime
