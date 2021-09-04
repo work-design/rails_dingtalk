@@ -1,0 +1,10 @@
+<div class="<%= active_helper(modules: 'com/panel', active: 'menu ex-accordion is-active', item: 'menu ex-accordion is-active') %>" data-controller="menu">
+  <%= content_tag :div, class: 'menu-list' do %>
+    <%= link_to t('dingtalk.admin.apps.index.title'), { controller: 'dingtalk/admin/apps' }, class: active_helper(controllers: 'apps', active: 'is-active') -%>
+  <% end %>
+  <a class="menu-label" data-action="menu#toggle">
+    <i class="fas fa-cogs fa-fw"></i>
+    <span><%= t('dingtalk.admin.title') %></span>
+    <i class="fas dropdown"></i>
+  </a>
+</div>
