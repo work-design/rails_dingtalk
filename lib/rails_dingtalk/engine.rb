@@ -1,4 +1,3 @@
-require 'rails_com'
 module RailsDingtalk
   class Engine < ::Rails::Engine
     config.autoload_paths += Dir[
@@ -12,10 +11,9 @@ module RailsDingtalk
         helper: false
       }
       g.test_unit = {
-        fixture: true,
-        fixture_replacement: :factory_girl
+        fixture: true
       }
-      g.templates.unshift File.expand_path('lib/templates', RailsCom::Engine.root)
+      #g.templates.unshift File.expand_path('lib/templates', RailsCom::Engine.root)
     end
   end
 end
