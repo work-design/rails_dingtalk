@@ -41,10 +41,14 @@ module Dingtalk
 
     private
     def parse_response(response, parse_as)
-      raise "Request get fail, response status #{response.status}" if response.status != 200
+      if response.status != 200
+        Rails.logger.debug respose.body.to_s
+        raise "Request get fail, response status #{response.status}"
+      end
 
       content_type = response.content_type.mime_type
       body = response.body.to_s
+      Rails.logger.debug "body: #{body}"
 
       if content_type =~ /image|audio|video/
         data = Tempfile.new('tmp')
