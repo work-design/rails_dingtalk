@@ -12,6 +12,9 @@ Rails.application.routes.draw do
       collection do
         post :info
       end
+      member do
+        get :login
+      end
     end
   end
 
