@@ -14,6 +14,8 @@ module Dingtalk
       attribute :jsapi_ticket, :string
       attribute :oauth2_state, :string
       attribute :jsapi_ticket_expires_at, :datetime
+
+      has_many :dingtalk_users, foreign_key: :appid, primary_key: :corp_id
     end
 
     def api

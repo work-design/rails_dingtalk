@@ -30,11 +30,20 @@ module Dingtalk
       r = HTTPX.post 'https://api.dingtalk.com/v1.0/oauth2/userAccessToken', json: h
       result = JSON.parse(r.body.to_s)
       logger.debug result
+
+      info = HTTPX.post 'https://api.dingtalk.com/v1.0/contact/users/me', headers: { 'x-acs-dingtalk-access-token': r['accessToken'] }
+      logger.debug info
       #binding.break
-      # wechat_user = wechat_users.find_or_initialize_by(uid: result['openid'])
-      # wechat_user.assign_attributes result.slice('access_token', 'refresh_token', 'unionid')
-      # wechat_user.expires_at = Time.current + result['expires_in'].to_i
-      # wechat_user
+      dingtalk_user = dingtalk_users.find_or_initialize_by(uid: info['openId'])
+      dingtalk_user.access_token = r['accessToken']
+      dingtalk_user.expires_at = Time.current + r['expireIn'].to_i
+      dingtalk_user.refresh_token = r['refreshToken']
+      dingtalk_user.unionid = info['unionId']
+      dingtalk_user.name = info['nick']
+      dingtalk_user.avatar_url = info['avatarUrl']
+      dingtalk_user.identity = info['mobile']
+      dingtalk_user.extra = info.slice('email', 'stateCode')
+      dingtalk_user
     end
 
   end
