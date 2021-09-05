@@ -40,7 +40,10 @@ module Dingtalk::Api
     protected
     def with_access_token(headers = {}, tries = 2)
       app.refresh_access_token unless app.access_token_valid?
-      yield headers.merge!(Authorization: "Bearer #{app.access_token}")
+      yield headers.merge!(
+        Authorization: "Bearer #{app.access_token}",
+        'x-acs-dingtalk-access-token': app.access_token
+      )
     rescue => e
       Rails.logger.debug e.full_message
       app.refresh_access_token
