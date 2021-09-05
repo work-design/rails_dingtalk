@@ -39,7 +39,7 @@ module Dingtalk::Api
       app.refresh_access_token unless app.access_token_valid?
       yield params.merge!(access_token: app.access_token)
     rescue => e
-      logger.debug e.backtrace
+      Rails.logger.debug e.backtrace
       app.refresh_access_token
       retry unless (tries -= 1).zero?
     end
