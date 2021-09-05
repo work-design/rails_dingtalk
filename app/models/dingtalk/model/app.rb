@@ -11,7 +11,6 @@ module Dingtalk
       attribute :corp_id, :string
       attribute :access_token, :string
       attribute :access_token_expires_at, :datetime
-      attribute :refresh_token, :string
       attribute :jsapi_ticket, :string
       attribute :oauth2_state, :string
       attribute :jsapi_ticket_expires_at, :datetime
@@ -42,9 +41,9 @@ module Dingtalk
       access_token_expires_at > Time.current
     end
 
-    def jsapi_ticket
+    def get_jsapi_ticket
       if jsapi_ticket_valid?
-        super
+        jsapi_ticket
       else
         refresh_jsapi_ticket
       end

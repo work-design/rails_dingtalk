@@ -1,5 +1,5 @@
-module Dingtalk::Model
-  module App::NewApp
+module Dingtalk
+  module Model::App::NewApp
 
     def api
       return @api if defined? @api

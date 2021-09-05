@@ -3,7 +3,15 @@ module Dingtalk::Api
     BASE = 'https://api.dingtalk.com/'
 
     def token
-      @client.post 'v1.0/oauth2/userAccessToken', { clientId: app.app_key, clientSecret: app.app_secret }.to_json, base: BASE
+      payload = {
+        appKey: app.app_key,
+        appSecret: app.app_secret,
+      }
+      r = @client.post 'v1.0/oauth2/accessToken', payload.to_json, base: BASE
+      {
+        'access_token' => r['accessToken'],
+        'expires_in' => r['expireIn']
+      }
     end
 
   end
