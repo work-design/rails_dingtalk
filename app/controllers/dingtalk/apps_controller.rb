@@ -1,6 +1,6 @@
 module Dingtalk
   class AppsController < BaseController
-    before_action :set_app, only: [:login]
+    before_action :set_app, only: [:info]
 
     def info
       result = @app.xx(params[:code])
