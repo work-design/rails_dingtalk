@@ -14,10 +14,6 @@ module Dingtalk
       attribute :refresh_token, :string
       attribute :extra, :json, default: {}
       attribute :identity, :string, index: true
-      index [:uid, :provider], unique: true
-
-      validates :provider, presence: true
-      validates :uid, presence: true
     end
 
 
