@@ -9,7 +9,7 @@ module Dingtalk
     end
 
     def login
-      @dingtalk_user = @app.generate_user(params[:code])
+      @dingtalk_user = @app.generate_user(params[:authCode])
       @dingtalk_user.save
     end
 
