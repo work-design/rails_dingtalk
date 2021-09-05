@@ -28,21 +28,22 @@ module Dingtalk
         grantType: 'authorization_code'
       }
       r = HTTPX.post 'https://api.dingtalk.com/v1.0/oauth2/userAccessToken', json: h
-      result = JSON.parse(r.body.to_s)
+      token_info = JSON.parse(r.body.to_s)
       logger.debug result
 
       info = HTTPX.post 'https://api.dingtalk.com/v1.0/contact/users/me', headers: { 'x-acs-dingtalk-access-token': r['accessToken'] }
-      logger.debug info
+      profile_info = JSON.parse(info.body.to_s)
+      logger.debug profile_info
       #binding.break
-      dingtalk_user = dingtalk_users.find_or_initialize_by(uid: info['openId'])
-      dingtalk_user.access_token = r['accessToken']
-      dingtalk_user.expires_at = Time.current + r['expireIn'].to_i
-      dingtalk_user.refresh_token = r['refreshToken']
-      dingtalk_user.unionid = info['unionId']
-      dingtalk_user.name = info['nick']
-      dingtalk_user.avatar_url = info['avatarUrl']
-      dingtalk_user.identity = info['mobile']
-      dingtalk_user.extra = info.slice('email', 'stateCode')
+      dingtalk_user = dingtalk_users.find_or_initialize_by(uid: profile_info['openId'])
+      dingtalk_user.access_token = token_info['accessToken']
+      dingtalk_user.expires_at = Time.current + token_info['expireIn'].to_i
+      dingtalk_user.refresh_token = token_info['refreshToken']
+      dingtalk_user.unionid = profile_info['unionId']
+      dingtalk_user.name = profile_info['nick']
+      dingtalk_user.avatar_url = profile_info['avatarUrl']
+      dingtalk_user.identity = profile_info['mobile']
+      dingtalk_user.extra = profile_info.slice('email', 'stateCode')
       dingtalk_user
     end
 
