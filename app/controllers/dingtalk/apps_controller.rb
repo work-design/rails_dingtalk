@@ -3,7 +3,7 @@ module Dingtalk
     before_action :set_app, only: [:login]
 
     def info
-      result = @app.getuserinfo(params[:code])
+      result = @app.xx(params[:code])
       render json: result
     end
 
