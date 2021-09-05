@@ -16,19 +16,23 @@ module Dingtalk::Api
       get 'get_jsapi_ticket', base: BASE
     end
 
-    def get(path, params: {}, headers: {}, base: nil, as: nil)
+    def base_host
+      BASE
+    end
+
+    def get(path, params: {}, headers: {}, base: base_host, as: nil)
       with_access_token(params) do |with_token_params|
         @client.get path, headers: headers, params: with_token_params, base: base, as: as
       end
     end
 
-    def post(path, params: {}, headers: {}, base: nil, **payload)
+    def post(path, params: {}, headers: {}, base: base_host, **payload)
       with_access_token(params) do |with_token_params|
         @client.post path, payload.to_json, headers: headers, params: with_token_params, base: base
       end
     end
 
-    def post_file(path, file, params: {}, headers: {}, base: nil)
+    def post_file(path, file, params: {}, headers: {}, base: base_host)
       with_access_token(params) do |with_token_params|
         @client.post_file path, file, headers: headers, params: with_token_params, base: base
       end

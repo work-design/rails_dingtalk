@@ -15,5 +15,9 @@ module Dingtalk::Api
       }
     end
 
+    def base_host
+      BASE
+    end
+
   end
 end
