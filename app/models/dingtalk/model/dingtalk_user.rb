@@ -1,5 +1,5 @@
 module Dingtalk
-  module Model::OauthUser
+  module Model::DingtalkUser
     extend ActiveSupport::Concern
 
     included do
