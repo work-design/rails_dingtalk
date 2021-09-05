@@ -29,7 +29,7 @@ module Dingtalk
       }
       r = HTTPX.post 'https://api.dingtalk.com/v1.0/oauth2/userAccessToken', json: h
       token_info = JSON.parse(r.body.to_s)
-      logger.debug result
+      logger.debug token_info
 
       info = HTTPX.post 'https://api.dingtalk.com/v1.0/contact/users/me', headers: { 'x-acs-dingtalk-access-token': r['accessToken'] }
       profile_info = JSON.parse(info.body.to_s)
