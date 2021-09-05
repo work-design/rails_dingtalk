@@ -12,7 +12,7 @@ module Dingtalk
 
     private
     def set_app
-      @app = App.find_by corp_id: params[:corp_id]
+      @app = NormalApp.find_by corp_id: params[:corp_id]
     end
 
   end
