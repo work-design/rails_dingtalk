@@ -27,7 +27,7 @@ module Dingtalk
         code: code,
         grantType: 'authorization_code'
       }
-      r = HTTPX.post "https://api.dingtalk.com/v1.0/oauth2/userAccessToken", body: h.to_json
+      r = HTTPX.post 'https://api.dingtalk.com/v1.0/oauth2/userAccessToken', json: h
       result = JSON.parse(r.body.to_s)
       logger.debug result
       #binding.break
