@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     end
     resources :apps do
       collection do
-        get :info
+        post :info
       end
     end
   end
