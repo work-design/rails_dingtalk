@@ -13,12 +13,13 @@ dd.ready(() => {
       fetch('https://soa-okr.tallty.com/dingtalk/apps/info', {
         method: 'POST',
         headers: {
-          Accept: 'application/json'
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: {
+        body: JSON.stringify({
           corp_id: 'ding9f5ed2cec249700e35c2f4657eb6378f',
           code: info.code
-        }
+        })
       }).then(response => {
         return response.text()
       }).then(body => {
