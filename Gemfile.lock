@@ -31,6 +31,8 @@ PATH
   remote: .
   specs:
     rails_dingtalk (0.1)
+      http-form_data (~> 2.3)
+      httpx (~> 0.16)
       rails (>= 5.0)
 
 GEM
