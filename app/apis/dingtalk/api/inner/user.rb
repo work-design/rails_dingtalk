@@ -1,5 +1,5 @@
 module Dingtalk::Api
-  module User
+  module Inner::User
     BASE = 'https://oapi.dingtalk.com/'
 
     def getuserinfo(code)

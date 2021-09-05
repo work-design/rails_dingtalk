@@ -18,7 +18,7 @@ module Dingtalk
 
     def api
       return @api if defined? @api
-      @api = Api::Base.new(self)
+      @api = Api::Normal.new(self)
     end
 
     def refresh_access_token

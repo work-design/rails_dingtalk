@@ -3,7 +3,7 @@ module Dingtalk
 
     def api
       return @api if defined? @api
-      @api = Api::BaseNew.new(self)
+      @api = Api::New.new(self)
     end
 
   end
