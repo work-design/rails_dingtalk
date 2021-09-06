@@ -9,7 +9,7 @@ module Dingtalk
     def oauth2_url(scope = 'openid corpid', state: SecureRandom.hex(16), **host_options)
       h = {
         client_id: app_key,
-        redirect_uri: Rails.application.routes.url_for(controller: 'dingtalk/apps', action: 'login', id: id, **host_options),
+        redirect_uri: Rails.application.routes.url_for(controller: 'dingtalk/apps', action: 'login', app_key: app_key, **host_options),
         response_type: 'code',
         scope: scope,
         state: state,

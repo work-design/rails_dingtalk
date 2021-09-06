@@ -11,8 +11,6 @@ Rails.application.routes.draw do
     resources :apps do
       collection do
         post :info
-      end
-      member do
         get :login
       end
     end

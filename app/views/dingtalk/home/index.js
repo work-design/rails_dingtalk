@@ -17,7 +17,7 @@ dd.ready(() => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          corp_id: 'ding9f5ed2cec249700e35c2f4657eb6378f',
+          app_id: 'xxxx',
           code: info.code
         })
       }).then(response => {
