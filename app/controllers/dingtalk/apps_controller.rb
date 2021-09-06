@@ -18,7 +18,7 @@ module Dingtalk
 
     private
     def set_new_app
-      @app = NewlApp.find_by(app_key: params[:app_key])
+      @app = NewApp.find_by(app_key: params[:app_key])
     end
 
     def set_normal_app
