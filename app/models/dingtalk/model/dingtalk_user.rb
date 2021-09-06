@@ -14,6 +14,8 @@ module Dingtalk
       attribute :refresh_token, :string
       attribute :extra, :json, default: {}
       attribute :identity, :string, index: true
+
+      belongs_to :new_app, foreign_key: :appid, primary_key: :app_key
     end
 
 
