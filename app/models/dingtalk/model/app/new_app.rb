@@ -13,7 +13,8 @@ module Dingtalk
         response_type: 'code',
         scope: scope,
         state: state,
-        nonce: SecureRandom.hex(4)
+        nonce: SecureRandom.hex(4),
+        prompt: 'consent'
       }
 
       logger.debug "\e[35m  Detail: #{h}  \e[0m"
