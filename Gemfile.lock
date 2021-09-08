@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: 96b28af01b4a3aaca389ea4b44b33e869e01a67c
+  revision: 8949509c4f26ecf76adecfdbb2e221535ee47ac0
   specs:
     rails_com (1.2.9)
       acme-client
@@ -18,11 +18,19 @@ GIT
       httpx (~> 0.16)
       kaminari
       rails (>= 6.1)
+      rails_extend
       turbo-rails
 
 GIT
+  remote: https://github.com/work-design/rails_extend.git
+  revision: 48e8b20f65097c981b8ecc3b9b35d2082512d9e8
+  specs:
+    rails_extend (1.0.0)
+      rails (>= 6.0)
+
+GIT
   remote: https://github.com/work-design/rails_ui.git
-  revision: b915e58f8582043db65dccf5ea014fc73ef98dc6
+  revision: c8d7bfe6d598c9433373e4e8c0e7c17ebc98b17a
   specs:
     rails_ui (0.0.1)
       rails
@@ -252,6 +260,7 @@ DEPENDENCIES
   puma
   rails_com!
   rails_dingtalk!
+  rails_extend!
   rails_ui!
   sdoc
   sidekiq

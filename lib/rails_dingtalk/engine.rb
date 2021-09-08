@@ -4,6 +4,9 @@ module RailsDingtalk
     config.autoload_paths += Dir[
       "#{config.root}/app/models/app"
     ]
+    config.eager_load_paths += Dir[
+      "#{config.root}/app/models/app"
+    ]
 
     config.generators do |g|
       g.rails = {

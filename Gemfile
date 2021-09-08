@@ -10,6 +10,7 @@ gem 'jbuilder'
 gem 'viter', github: 'qinmingyuan/viter'
 gem 'rails_ui', github: 'work-design/rails_ui'
 gem 'rails_com', github: 'work-design/rails_com'
+gem 'rails_extend', github: 'work-design/rails_extend'
 
 gem 'amazing_print'
 
