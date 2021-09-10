@@ -5,4 +5,4 @@ zh:
         type:
           Dingtalk::NormalApp: 普通App
           Dingtalk::NewApp: NewApp
-
+          Dingtalk::SaasApp: 政务钉

@@ -1,6 +1,6 @@
 module Dingtalk
   class AppsController < BaseController
-    before_action :set_new_app, only: [:login]
+    before_action :set_app, only: [:login]
     before_action :set_normal_app, only: [:info]
 
     def info
@@ -17,8 +17,8 @@ module Dingtalk
     end
 
     private
-    def set_new_app
-      @app = NewApp.find_by(app_key: params[:app_key])
+    def set_app
+      @app = App.where(type: ['Dingtalk::NewApp', 'Dingtalk::SaasApp']).find_by(app_key: params[:app_key])
     end
 
     def set_normal_app

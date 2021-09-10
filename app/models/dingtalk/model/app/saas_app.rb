@@ -15,5 +15,9 @@ module Dingtalk
       new_app.api.getuserinfo(result['unionid'])
     end
 
+    def generate_user(code)
+      binding.b
+    end
+
   end
 end
