@@ -22,23 +22,23 @@ GIT
       turbo-rails
 
 GIT
+  remote: https://github.com/work-design/rails_design.git
+  revision: 074ee48cd8cd754977c8946f73479fe4a7e9b3f5
+  specs:
+    rails_design (0.0.1)
+      rails
+
+GIT
   remote: https://github.com/work-design/rails_extend.git
   revision: 48e8b20f65097c981b8ecc3b9b35d2082512d9e8
   specs:
     rails_extend (1.0.0)
       rails (>= 6.0)
 
-GIT
-  remote: https://github.com/work-design/rails_ui.git
-  revision: c8d7bfe6d598c9433373e4e8c0e7c17ebc98b17a
-  specs:
-    rails_ui (0.0.1)
-      rails
-
 PATH
   remote: .
   specs:
-    rails_dingtalk (0.1)
+    rails_dingtalk (0.0.2)
       http-form_data (~> 2.3)
       httpx (~> 0.16)
       rails (>= 5.0)
@@ -117,7 +117,7 @@ GEM
     concurrent-ruby (1.1.9)
     connection_pool (2.2.5)
     crass (1.0.6)
-    debug (1.0.0.rc2)
+    debug (1.0.0)
       irb
       reline (>= 0.2.7)
     default_where (2.3.0)
@@ -253,15 +253,15 @@ PLATFORMS
 
 DEPENDENCIES
   amazing_print
-  debug (>= 1.0.0.rc)
+  debug
   jbuilder
   minitest-hooks
   pg
   puma
   rails_com!
+  rails_design!
   rails_dingtalk!
   rails_extend!
-  rails_ui!
   sdoc
   sidekiq
   viter!
