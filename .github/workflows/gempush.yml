@@ -1,11 +1,8 @@
 name: Gem
 on:
-  pull_request:
-    branches:
-    - release
-  push:
-    branches:
-    - release
+  create:
+    tags:
+    - 'v*'
 jobs:
   build:
     name: Build + Publish
@@ -18,7 +15,7 @@ jobs:
     - name: Set up Ruby
       uses: actions/setup-ruby@v1
       with:
-        version: 3.0
+        ruby-version: 3.0
     - name: Publish to RubyGems
       run: |
         mkdir -p $HOME/.gem
