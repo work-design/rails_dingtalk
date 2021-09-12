@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: 8949509c4f26ecf76adecfdbb2e221535ee47ac0
+  revision: 62d866862c729077c67329a0faf255ebaa49eba2
   specs:
     rails_com (1.2.9)
       acme-client
@@ -183,6 +183,8 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.12.4-x86_64-darwin)
       racc (~> 1.4)
+    nokogiri (1.12.4-x86_64-linux)
+      racc (~> 1.4)
     pg (1.2.3)
     puma (5.4.0)
       nio4r (~> 2.0)
@@ -250,6 +252,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   amazing_print

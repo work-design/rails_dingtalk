@@ -22,7 +22,12 @@ module Dingtalk
       headers['Content-Type'] ||= 'application/json'
       url = base + path
 
-      response = @http.with_headers(headers).post(url, params: params, body: payload)
+      opts = {
+        params: params
+      }
+      opts.merge!(body: payload) if payload.present?
+
+      response = @http.with_headers(headers).post(url, **opts)
       parse_response(response, options[:as])
     end
 
