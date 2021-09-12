@@ -17,7 +17,7 @@ module Dingtalk
       parse_response(response, options[:as])
     end
 
-    def post(path, payload, headers: {}, params: {}, base: nil, **options)
+    def post(path, payload = {}, headers: {}, params: {}, base: nil, **options)
       headers['Accept'] ||= 'application/json'
       headers['Content-Type'] ||= 'application/json'
       url = base + path
@@ -25,7 +25,7 @@ module Dingtalk
       opts = {
         params: params
       }
-      opts.merge!(body: payload) if payload.present?
+      opts.merge!(body: payload.to_json) if payload.present?
 
       response = @http.with_headers(headers).post(url, **opts)
       parse_response(response, options[:as])

@@ -5,30 +5,26 @@ module Dingtalk::Api
 
     def token
       headers = sign_header('POST', '/gettoken.json')
-      r = @client.post 'gettoken.json', nil, headers: headers, base: BASE
+      r = @client.post 'gettoken.json', headers: headers, base: BASE
       {
         'access_token' => r.dig('content', 'data', 'accessToken'),
         'expires_in' => r.dig('content', 'data', 'expiresIn')
       }
     end
 
-    def sign_assess_header(method, path, params = {})
-
-      sign_header(method, path, params = {})
-    end
-
     protected
-    def with_access_token(method, path, params = {}, headers = {}, tries = 2)
+    def with_access_token(method, path, params = {}, headers = {}, payload = {}, tries = 2)
       app.refresh_access_token unless app.access_token_valid?
-      processed_headers = sign_header(method, path, params = {})
-      yield params.merge!(access_token: app.access_token), processed_headers
+      processed_params = params.merge!(access_token: app.access_token)
+      processed_headers = sign_header(method, path, processed_params, payload)
+      yield processed_params, processed_headers
     rescue => e
       Rails.logger.debug e.full_message
       app.refresh_access_token
       retry unless (tries -= 1).zero?
     end
 
-    def sign_header(method, path, params = {})
+    def sign_header(method, path, params = {}, payload = {})
       headers = {
         apiKey: app.app_key,
         'X-Hmac-Auth-Timestamp': Time.now.strftime('%Y-%m-%dT%H:%M:%S.%3N%:z'),
@@ -44,7 +40,7 @@ module Dingtalk::Api
         headers[:'X-Hmac-Auth-Nonce'],
         path
       ]
-      result << params.to_query if params.present?
+      result << params.merge(payload).to_query if params.present?
       signature = OpenSSL::HMAC.digest('SHA256', app.app_secret, result.join("\n"))
       headers.merge! 'X-Hmac-Auth-Signature': Base64.strict_encode64(signature)
     end

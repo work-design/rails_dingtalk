@@ -21,25 +21,25 @@ module Dingtalk::Api
     end
 
     def get(path, params: {}, headers: {}, base: base_host, as: nil)
-      with_access_token('get', path, params, headers) do |processed_params, processed_headers|
+      with_access_token('get', path, params, headers, nil) do |processed_params, processed_headers|
         @client.get path, headers: processed_headers, params: processed_params, base: base, as: as
       end
     end
 
     def post(path, params: {}, headers: {}, base: base_host, **payload)
-      with_access_token('post', path, params, headers) do |processed_params, processed_headers|
-        @client.post path, payload.to_json, headers: processed_headers, params: processed_params, base: base
+      with_access_token('post', path, params, headers, payload) do |processed_params, processed_headers|
+        @client.post path, payload, headers: processed_headers, params: processed_params, base: base
       end
     end
 
     def post_file(path, file, params: {}, headers: {}, base: base_host)
-      with_access_token('post', path, params, headers) do |processed_params, processed_headers|
+      with_access_token('post', path, params, headers, nil) do |processed_params, processed_headers|
         @client.post_file path, file, headers: processed_headers, params: processed_params, base: base
       end
     end
 
     protected
-    def with_access_token(method, path, params = {}, headers = {}, tries = 2)
+    def with_access_token(method, path, params = {}, headers = {}, payload = {}, tries = 2)
       app.refresh_access_token unless app.access_token_valid?
       yield params.merge!(access_token: app.access_token), headers
     rescue => e

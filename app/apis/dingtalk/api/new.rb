@@ -20,7 +20,7 @@ module Dingtalk::Api
     end
 
     protected
-    def with_access_token(method, path, params = {}, headers = {}, tries = 2)
+    def with_access_token(method, path, params = {}, headers = {}, payload = {}, tries = 2)
       app.refresh_access_token unless app.access_token_valid?
       yield params, headers.merge!(Authorization: "Bearer #{app.access_token}", 'x-acs-dingtalk-access-token': app.access_token)
     rescue => e
