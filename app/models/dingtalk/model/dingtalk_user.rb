@@ -15,7 +15,8 @@ module Dingtalk
       attribute :extra, :json, default: {}
       attribute :identity, :string, index: true
 
-      belongs_to :new_app, foreign_key: :appid, primary_key: :app_key
+      belongs_to :new_app, foreign_key: :appid, primary_key: :app_key, optional: true
+      belongs_to :saas_app, foreign_key: :appid, primary_key: :app_key, optional: true
     end
 
 

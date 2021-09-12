@@ -22,7 +22,6 @@ module Dingtalk::Api
     def with_access_token(method, path, params = {}, headers = {}, payload = {}, tries = 2)
       app.refresh_access_token unless app.access_token_valid?
       payload.merge!(access_token: app.access_token)
-      #params.merge!(access_token: app.access_token)
       processed_headers = sign_header(method, path, params, payload)
       yield params, processed_headers
     rescue => e
@@ -34,8 +33,8 @@ module Dingtalk::Api
     def sign_header(method, path, params = {}, payload = {})
       headers = {
         apiKey: app.app_key,
-        'X-Hmac-Auth-Timestamp': Time.now.strftime('%Y-%m-%dT%H:%M:%S.%6N%:z'),
-        'X-Hmac-Auth-Nonce': '16314248251027993', #(Time.now.to_f * 1000).round.to_s + rand(1000..9999).to_s,
+        'X-Hmac-Auth-Timestamp': Time.now.to_s(:iso8601),
+        'X-Hmac-Auth-Nonce': (Time.now.to_f * 1000).round.to_s + rand(1000..9999).to_s,
         'X-Hmac-Auth-Version': '1.0',
         'X-Hmac-Auth-IP': RailsDingtalk.config.ip,
         'X-Hmac-Auth-MAC': RailsDingtalk.config.mac

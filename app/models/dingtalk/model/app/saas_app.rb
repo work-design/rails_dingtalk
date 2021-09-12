@@ -10,14 +10,14 @@ module Dingtalk
       @api = Api::Saas.new(self)
     end
 
-    def xx(code)
-      result = api.getuserinfo(code)
-      new_app.api.getuserinfo(result['unionid'])
-    end
-
     def generate_user(code)
-      r = api.getuserinfo(code)
-      binding.b
+      info = api.getuserinfo(code)
+      return unless info.is_a?(Hash)
+      dingtalk_user = dingtalk_users.find_or_initialize_by(uid: info['openid'])
+      dingtalk_user.name = info['nickNameCn']
+      dingtalk_user.identity = info['account']
+      dingtalk_user.extra = info.slice('clientId', 'lastName', 'realmId', 'realmName', 'tenantUserId', 'employeeCode', 'accountId', 'tenantId', 'tenantName', 'referId', 'namespace')
+      dingtalk_user
     end
 
   end
