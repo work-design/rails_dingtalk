@@ -1,7 +1,7 @@
 module Dingtalk::Api
   class Saas < Base
     include Inner::Saas
-    BASE = 'https://openplatform.dg-work.cn/'
+    BASE = 'https://openplatform.dg-work.cn'
 
     def token
       headers = sign_header('POST', '/gettoken.json')
@@ -12,12 +12,19 @@ module Dingtalk::Api
       }
     end
 
+    def post(path, params: {}, headers: {}, base: base_host, **payload)
+      with_access_token('post', path, params, headers, payload) do |processed_params, processed_headers|
+        @client.post path, payload.to_query, headers: processed_headers, params: processed_params, base: base
+      end
+    end
+
     protected
     def with_access_token(method, path, params = {}, headers = {}, payload = {}, tries = 2)
       app.refresh_access_token unless app.access_token_valid?
-      processed_params = params.merge!(access_token: app.access_token)
-      processed_headers = sign_header(method, path, processed_params, payload)
-      yield processed_params, processed_headers
+      payload.merge!(access_token: app.access_token)
+      #params.merge!(access_token: app.access_token)
+      processed_headers = sign_header(method, path, params, payload)
+      yield params, processed_headers
     rescue => e
       Rails.logger.debug e.full_message
       app.refresh_access_token
@@ -27,8 +34,8 @@ module Dingtalk::Api
     def sign_header(method, path, params = {}, payload = {})
       headers = {
         apiKey: app.app_key,
-        'X-Hmac-Auth-Timestamp': Time.now.strftime('%Y-%m-%dT%H:%M:%S.%3N%:z'),
-        'X-Hmac-Auth-Nonce': (Time.now.to_f * 1000).round.to_s + rand(1000..9999).to_s,
+        'X-Hmac-Auth-Timestamp': Time.now.strftime('%Y-%m-%dT%H:%M:%S.%6N%:z'),
+        'X-Hmac-Auth-Nonce': '16314248251027993', #(Time.now.to_f * 1000).round.to_s + rand(1000..9999).to_s,
         'X-Hmac-Auth-Version': '1.0',
         'X-Hmac-Auth-IP': RailsDingtalk.config.ip,
         'X-Hmac-Auth-MAC': RailsDingtalk.config.mac
@@ -40,7 +47,7 @@ module Dingtalk::Api
         headers[:'X-Hmac-Auth-Nonce'],
         path
       ]
-      result << params.merge(payload).to_query if params.present?
+      result << params.merge(payload).to_query if params.present? || payload.present?
       signature = OpenSSL::HMAC.digest('SHA256', app.app_secret, result.join("\n"))
       headers.merge! 'X-Hmac-Auth-Signature': Base64.strict_encode64(signature)
     end

@@ -23,11 +23,14 @@ module Dingtalk
       url = base + path
 
       opts = {
-        params: params
+        params: params,
+        headers: headers
       }
-      opts.merge!(body: payload.to_json) if payload.present?
+      opts.merge!(body: payload) if payload.present?
 
       response = @http.with_headers(headers).post(url, **opts)
+      binding.b
+
       parse_response(response, options[:as])
     end
 

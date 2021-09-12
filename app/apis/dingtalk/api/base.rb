@@ -28,7 +28,7 @@ module Dingtalk::Api
 
     def post(path, params: {}, headers: {}, base: base_host, **payload)
       with_access_token('post', path, params, headers, payload) do |processed_params, processed_headers|
-        @client.post path, payload, headers: processed_headers, params: processed_params, base: base
+        @client.post path, payload.to_json, headers: processed_headers, params: processed_params, base: base
       end
     end
 
