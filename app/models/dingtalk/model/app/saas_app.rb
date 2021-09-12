@@ -17,6 +17,7 @@ module Dingtalk
 
     def generate_user(code)
       r = api.getuserinfo(code)
+      binding.b
     end
 
   end

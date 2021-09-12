@@ -29,8 +29,6 @@ module Dingtalk
       opts.merge!(body: payload) if payload.present?
 
       response = @http.with_headers(headers).post(url, **opts)
-      binding.b
-
       parse_response(response, options[:as])
     end
 
