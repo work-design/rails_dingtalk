@@ -1,6 +1,6 @@
-require 'net/http'
 module Dingtalk::Api
   class Saas < Base
+    include Inner::Saas
     BASE = 'https://openplatform.dg-work.cn/'
 
     def token
@@ -10,6 +10,22 @@ module Dingtalk::Api
         'access_token' => r.dig('content', 'data', 'accessToken'),
         'expires_in' => r.dig('content', 'data', 'expiresIn')
       }
+    end
+
+    def sign_assess_header(method, path, params = {})
+
+      sign_header(method, path, params = {})
+    end
+
+    protected
+    def with_access_token(method, path, params = {}, headers = {}, tries = 2)
+      app.refresh_access_token unless app.access_token_valid?
+      processed_headers = sign_header(method, path, params = {})
+      yield params.merge!(access_token: app.access_token), processed_headers
+    rescue => e
+      Rails.logger.debug e.full_message
+      app.refresh_access_token
+      retry unless (tries -= 1).zero?
     end
 
     def sign_header(method, path, params = {})
@@ -23,7 +39,7 @@ module Dingtalk::Api
       }
 
       result = [
-        method,
+        method.upcase,
         headers[:'X-Hmac-Auth-Timestamp'],
         headers[:'X-Hmac-Auth-Nonce'],
         path
@@ -33,12 +49,5 @@ module Dingtalk::Api
       headers.merge! 'X-Hmac-Auth-Signature': Base64.strict_encode64(signature)
     end
 
-    protected
-    def with_access_token(params = {}, tries = 2)
-      yield params
-    rescue => e
-      Rails.logger.debug e.full_message
-      retry unless (tries -= 1).zero?
-    end
   end
 end
