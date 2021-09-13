@@ -1,11 +1,12 @@
 module Dingtalk::Api
   class Saas < Base
     include Inner::Saas
-    BASE = 'https://openplatform.dg-work.cn'
+    #BASE = 'https://openplatform.dg-work.cn'
+    BASE = 'https://openplatform-pro.ding.zj.gov.cn'
 
     def token
       headers = sign_header('POST', '/gettoken.json')
-      r = @client.post 'gettoken.json', headers: headers, base: BASE
+      r = @client.post '/gettoken.json', headers: headers, base: BASE
       {
         'access_token' => r.dig('content', 'data', 'accessToken'),
         'expires_in' => r.dig('content', 'data', 'expiresIn')
