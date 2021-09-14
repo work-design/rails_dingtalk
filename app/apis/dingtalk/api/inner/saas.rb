@@ -21,7 +21,7 @@ module Dingtalk::Api
         mobile: mobile
       }
 
-      r = post '/mozi/employee/get_by_mobile', payload, base: BASE
+      r = post '/mozi/employee/get_by_mobile', **payload, base: BASE
 
       if r.is_a? Hash
         r.dig('content', 'data')
