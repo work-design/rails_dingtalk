@@ -54,7 +54,7 @@ module Dingtalk
 
       content_type = response.content_type.mime_type
       body = response.body.to_s
-      Rails.logger.debug "body: #{body}"
+      Rails.logger.debug "  #{body}"
 
       if content_type =~ /image|audio|video/
         data = Tempfile.new('tmp')

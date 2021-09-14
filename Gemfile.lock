@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_com.git
-  revision: 45c5d36f3b00416bb719b73bde82cee16338a380
+  revision: 0fa82f6df70ac2222a9a5fdeb8f0d209ba01eeb7
   specs:
     rails_com (1.2.9)
       acme-client
@@ -23,14 +23,14 @@ GIT
 
 GIT
   remote: https://github.com/work-design/rails_design.git
-  revision: 074ee48cd8cd754977c8946f73479fe4a7e9b3f5
+  revision: 092a58af67ee302612df8cb5416149f6b9c7890a
   specs:
     rails_design (0.0.1)
       rails
 
 GIT
   remote: https://github.com/work-design/rails_extend.git
-  revision: 0c2ef4ef6c5538dfeb7df0692012177431d2f59e
+  revision: 40067af089497d0abe0ebf2fba77e813902bc868
   specs:
     rails_extend (1.0.0)
       rails (>= 6.0)
@@ -123,7 +123,7 @@ GEM
     default_where (2.3.0)
       activerecord (>= 4.0, <= 7.0)
     erubi (1.10.0)
-    faraday (1.7.1)
+    faraday (1.7.2)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
       faraday-excon (~> 1.1)

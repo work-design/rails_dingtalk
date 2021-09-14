@@ -16,7 +16,8 @@ module Dingtalk
       dingtalk_user = dingtalk_users.find_or_initialize_by(uid: info['openid'])
       dingtalk_user.name = info['nickNameCn']
       dingtalk_user.identity = info['account']
-      dingtalk_user.extra = info.slice('clientId', 'lastName', 'realmId', 'realmName', 'tenantUserId', 'employeeCode', 'accountId', 'tenantId', 'tenantName', 'referId', 'namespace')
+      dingtalk_user.employee_code = info['employeeCode']
+      dingtalk_user.extra = info.slice('clientId', 'lastName', 'realmId', 'realmName', 'tenantUserId', 'accountId', 'tenantId', 'tenantName', 'referId', 'namespace')
       dingtalk_user
     end
 
