@@ -12,6 +12,7 @@ module Dingtalk
         :name,
         :corp_id,
         :agent_id,
+        :tenant_id,
         :app_key,
         :app_secret
       ]

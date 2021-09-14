@@ -6,9 +6,9 @@ module Dingtalk
       attribute :employee_code, :string
     end
 
-    def sync_employee_code(mobile, tenant_id, app_key)
-      app = SaasApp.find_by(app_key: app_key)
-      info = app.api.get_employee_code(mobile, tenant_id)
+    def sync_employee_code(mobile, app_key = nil)
+      app = SaasApp.find_by(app_key: app_key) || SaasApp.first
+      info = app.api.get_employee_code(mobile)
       self.employee_code = info['employeeCode']
       self
     end

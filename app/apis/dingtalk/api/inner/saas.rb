@@ -13,12 +13,13 @@ module Dingtalk::Api
       end
     end
 
-    def get_employee_code(mobile, tenant_id)
+    def get_employee_code(mobile)
       payload = {
         areaCode: '86',
-        namespace: 'local'
+        namespace: 'local',
+        tenantId: app.tenant_id,
+        mobile: mobile
       }
-      payload.merge! mobile: mobile, tenantId: tenant_id
 
       r = post '/mozi/employee/get_by_mobile', payload, base: BASE
 
