@@ -8,6 +8,7 @@ module Dingtalk
 
     def sync_employee_code(mobile, app_key = nil)
       app = SaasApp.find_by(app_key: app_key) || SaasApp.first
+      return unless app
       info = app.api.get_employee_code(mobile)
       self.employee_code = info['employeeCode']
       self
