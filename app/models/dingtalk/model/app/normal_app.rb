@@ -3,6 +3,8 @@ module Dingtalk
     extend ActiveSupport::Concern
 
     included do
+      attribute :base_url, :string, default: 'https://oapi.dingtalk.com'
+
       has_one :new_app, foreign_key: :app_key, primary_key: :app_key
     end
 

@@ -3,6 +3,7 @@ module Dingtalk
     extend ActiveSupport::Concern
 
     included do
+      attribute :base_url, :string, default: 'https://openplatform.dg-work.cn'
     end
 
     def api

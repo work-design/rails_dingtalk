@@ -1,6 +1,5 @@
 module Dingtalk::Api
   class New < Base
-    BASE = 'https://api.dingtalk.com/'
     include Inner::New
 
     def token
@@ -8,15 +7,11 @@ module Dingtalk::Api
         appKey: app.app_key,
         appSecret: app.app_secret,
       }
-      r = @client.post 'v1.0/oauth2/accessToken', payload.to_json, base: BASE
+      r = @client.post 'v1.0/oauth2/accessToken', payload.to_json, base: app.base_url
       {
         'access_token' => r['accessToken'],
         'expires_in' => r['expireIn']
       }
-    end
-
-    def base_host
-      BASE
     end
 
     protected

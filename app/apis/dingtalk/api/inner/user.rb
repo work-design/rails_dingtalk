@@ -3,7 +3,7 @@ module Dingtalk::Api
     BASE = 'https://oapi.dingtalk.com/'
 
     def getuserinfo(code)
-      r = post 'topapi/v2/user/getuserinfo', code: code
+      r = post '/topapi/v2/user/getuserinfo', code: code
       if r.is_a? Hash
         r['result']
       else

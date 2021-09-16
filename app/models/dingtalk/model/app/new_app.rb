@@ -1,5 +1,10 @@
 module Dingtalk
   module Model::App::NewApp
+    extend ActiveSupport::Extend
+
+    included do
+      attribute :base_url, :string, default: 'https://api.dingtalk.com'
+    end
 
     def api
       return @api if defined? @api

@@ -1,6 +1,5 @@
 module Dingtalk::Api
   module Inner::Saas
-    #BASE = 'https://openplatform.dg-work.cn'
     BASE = 'https://openplatform-pro.ding.zj.gov.cn'
 
     def getuserinfo(code)

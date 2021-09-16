@@ -15,6 +15,7 @@ module Dingtalk
       attribute :oauth2_state, :string
       attribute :jsapi_ticket_expires_at, :datetime
       attribute :tenant_id, :string, comment: '专有钉钉，租户ID'
+      attribute :base_url, :string, comment: '对应的 Base Host'
 
       has_many :dingtalk_users, foreign_key: :appid, primary_key: :app_key
     end
