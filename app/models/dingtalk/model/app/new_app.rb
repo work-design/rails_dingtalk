@@ -1,6 +1,6 @@
 module Dingtalk
   module Model::App::NewApp
-    extend ActiveSupport::Extend
+    extend ActiveSupport::Concern
 
     included do
       attribute :base_url, :string, default: 'https://api.dingtalk.com'

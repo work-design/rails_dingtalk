@@ -1,5 +1,5 @@
 module Dingtalk
   class NewApp < App
-    include Model::App::NewApp
+    include Dingtalk::Model::App::NewApp
   end
 end

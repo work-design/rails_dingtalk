@@ -1,5 +1,5 @@
 module Dingtalk
   class SaasApp < App
-    include Model::App::SaasApp
+    include Dingtalk::Model::App::SaasApp
   end
 end
