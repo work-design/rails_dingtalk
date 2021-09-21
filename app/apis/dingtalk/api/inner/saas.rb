@@ -37,7 +37,7 @@ module Dingtalk::Api
           text: {
             content: text
           }
-        }
+        }.to_json
       }
 
       r = post '/message/workNotification', **payload
