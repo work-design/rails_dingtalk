@@ -1,6 +1,5 @@
 module Dingtalk::Api
   class Base
-    BASE = 'https://oapi.dingtalk.com/'
     attr_reader :app, :client
 
     def initialize(app)

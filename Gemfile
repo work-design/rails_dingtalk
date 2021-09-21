@@ -5,7 +5,6 @@ gemspec
 gem 'pg'
 gem 'puma'
 gem 'sidekiq'
-gem 'jbuilder'
 
 gem 'viter', github: 'qinmingyuan/viter'
 gem 'rails_design', github: 'work-design/rails_design'

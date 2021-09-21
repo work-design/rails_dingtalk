@@ -20,6 +20,9 @@ module Dingtalk
       belongs_to :saas_app, foreign_key: :appid, primary_key: :app_key, optional: true
     end
 
+    def text_notification(text = '')
+      saas_app.api.text_notification(text)
+    end
 
   end
 end

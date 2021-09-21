@@ -1,9 +1,8 @@
 module Dingtalk::Api
   module Inner::Saas
-    BASE = 'https://openplatform-pro.ding.zj.gov.cn'
 
     def getuserinfo(code)
-      r = post '/rpc/oauth2/dingtalk_app_user.json', auth_code: code, base: BASE
+      r = post '/rpc/oauth2/dingtalk_app_user.json', auth_code: code
 
       if r.is_a? Hash
         r.dig('content', 'data')
@@ -20,7 +19,28 @@ module Dingtalk::Api
         mobile: mobile
       }
 
-      r = post '/mozi/employee/get_by_mobile', **payload, base: BASE
+      r = post '/mozi/employee/get_by_mobile', **payload
+
+      if r.is_a? Hash
+        r.dig('content', 'data')
+      else
+        r
+      end
+    end
+
+    def text_notification(receiver_ids = [], text = '')
+      payload = {
+        receiverIds: Array(receiver_ids).join(','),
+        tenantId: app.tenant_id,
+        msg: {
+          msgtype: 'text',
+          text: {
+            content: text
+          }
+        }
+      }
+
+      r = post '/message/workNotification', **payload
 
       if r.is_a? Hash
         r.dig('content', 'data')
