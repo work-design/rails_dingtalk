@@ -32,7 +32,12 @@ module Dingtalk::Api
       payload = {
         receiverIds: Array(receiver_ids).join(','),
         tenantId: app.tenant_id,
-        msg: %Q({"msgtype":"text","text":{"content":#{text}}})
+        msg: {
+          msgtype: 'text',
+          text: {
+            content: text
+          }
+        }.to_json
       }
 
       r = post '/message/workNotification', **payload

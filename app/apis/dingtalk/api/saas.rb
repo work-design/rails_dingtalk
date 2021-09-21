@@ -13,7 +13,7 @@ module Dingtalk::Api
 
     def post(path, params: {}, headers: {}, base: app.base_url, **payload)
       with_access_token('post', path, params, headers, payload) do |processed_params, processed_headers|
-        @client.post path, payload.to_query, headers: processed_headers, params: processed_params, base: base
+        @client.post path, payload.map(&->(k,v){ "#{k}=#{v}" }).sort!.join('&'), headers: processed_headers, params: processed_params, base: base
       end
     end
 
@@ -45,7 +45,11 @@ module Dingtalk::Api
         headers[:'X-Hmac-Auth-Nonce'],
         path
       ]
-      result << params.merge(payload).to_query if params.present? || payload.present?
+      if params.present? || payload.present?
+        r = params.merge(payload)
+        r = r.map(&->(k,v){ "#{k}=#{v}" }).sort!.join('&')
+        result << r
+      end
       signature = OpenSSL::HMAC.digest('SHA256', app.app_secret, result.join("\n"))
       headers.merge! 'X-Hmac-Auth-Signature': Base64.strict_encode64(signature)
     end
