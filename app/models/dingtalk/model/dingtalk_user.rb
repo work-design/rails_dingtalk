@@ -21,7 +21,8 @@ module Dingtalk
     end
 
     def text_notification(text = '')
-      saas_app.api.text_notification(text)
+      account_id = extra.dig('accountId')
+      saas_app.api.text_notification(account_id, text)
     end
 
   end
