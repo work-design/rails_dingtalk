@@ -48,7 +48,6 @@ module Dingtalk
     private
     def parse_response(response, parse_as)
       if response.status != 200
-        Rails.logger.debug response.body.to_s
         raise "Request get fail, response status #{response.status}"
       end
 
