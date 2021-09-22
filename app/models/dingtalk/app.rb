@@ -1,5 +1,5 @@
 module Dingtalk
   class App < ApplicationRecord
-    include Model::App
+    include Dingtalk::Model::App
   end
 end
