@@ -21,7 +21,7 @@ module Dingtalk::Api
 
       r = post '/mozi/employee/get_by_mobile', **payload
 
-      if r.is_a? Hash
+      if r.is_a?(Hash) && r.dig('content', 'success')
         r.dig('content', 'data')
       else
         r
