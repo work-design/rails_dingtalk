@@ -2,14 +2,15 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gemspec
 
+gem 'rails', '7.0.0.alpha.2'
 gem 'pg'
 gem 'puma'
 gem 'sidekiq'
 
-gem 'viter', github: 'qinmingyuan/viter'
+gem 'rails_com', github: 'work-design/rails_com'
+gem 'rails_vite', github: 'work-design/rails_vite'
 gem 'rails_design', github: 'work-design/rails_design'
 gem 'rails_extend', github: 'work-design/rails_extend'
-gem 'rails_com', github: 'work-design/rails_com'
 
 gem 'amazing_print'
 

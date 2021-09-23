@@ -42,8 +42,8 @@ module Dingtalk::Api
 
       r = post '/message/workNotification', **payload
 
-      if r.is_a? Hash
-        r.dig('content', 'data')
+      if r.is_a?(Hash) && r.dig('success')
+        r.dig('content')
       else
         r
       end

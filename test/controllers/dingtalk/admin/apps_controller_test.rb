@@ -18,10 +18,10 @@ class Dingtalk::Admin::AppsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'create ok' do
-    assert_difference('App.count') do
+    assert_difference('Dingtalk::App.count') do
       post(
         url_for(controller: 'dingtalk/admin/apps', action: 'create'),
-        params: { app: { agent_id: @dingtalk_admin_app.agent_id, app_key: @dingtalk_admin_app.app_key, app_secret: @dingtalk_admin_app.app_secret, corp_id: @dingtalk_admin_app.corp_id } },
+        params: { app: { agent_id: @app.agent_id, app_key: @app.app_key, app_secret: @app.app_secret, corp_id: @app.corp_id } },
         as: :turbo_stream
       )
     end
@@ -44,7 +44,7 @@ class Dingtalk::Admin::AppsControllerTest < ActionDispatch::IntegrationTest
   test 'update ok' do
     patch(
       url_for(controller: 'dingtalk/admin/apps', action: 'update', id: @app.id),
-      params: { app: { agent_id: @dingtalk_admin_app.agent_id, app_key: @dingtalk_admin_app.app_key, app_secret: @dingtalk_admin_app.app_secret, corp_id: @dingtalk_admin_app.corp_id } },
+      params: { app: { agent_id: @app.agent_id, app_key: @app.app_key, app_secret: @app.app_secret, corp_id: @app.corp_id } },
       as: :turbo_stream
     )
 
@@ -52,7 +52,7 @@ class Dingtalk::Admin::AppsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'destroy ok' do
-    assert_difference('App.count', -1) do
+    assert_difference('Dingtalk::App.count', -1) do
       delete url_for(controller: 'dingtalk/admin/apps', action: 'destroy', id: @app.id), as: :turbo_stream
     end
 
