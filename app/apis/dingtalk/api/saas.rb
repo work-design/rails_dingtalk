@@ -32,8 +32,8 @@ module Dingtalk::Api
     def sign_header(method, path, params = {}, payload = {})
       headers = {
         apiKey: app.app_key,
-        'X-Hmac-Auth-Timestamp': Time.now.to_s(:iso8601),
-        'X-Hmac-Auth-Nonce': (Time.now.to_f * 1000).round.to_s + rand(1000..9999).to_s,
+        'X-Hmac-Auth-Timestamp': Time.current.to_formatted_s(:iso8601),
+        'X-Hmac-Auth-Nonce': (Time.current.to_f * 1000).round.to_s + rand(1000..9999).to_s,
         'X-Hmac-Auth-Version': '1.0',
         'X-Hmac-Auth-IP': RailsDingtalk.config.ip,
         'X-Hmac-Auth-MAC': RailsDingtalk.config.mac
