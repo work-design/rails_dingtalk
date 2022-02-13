@@ -12,9 +12,6 @@
     <%= css_load suffix: 'phone', media: 'all', 'data-turbo-track': 'reload' %>
     <%= javascript_vite_tag 'phone', 'data-turbo-track': 'reload' %>
     <%= js_load suffix: 'phone', 'data-turbo-track': 'reload' %>
-    <% if content_for?(:wechat_js) %>
-      <%= yield(:wechat_js) %>
-    <% end %>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= csp_meta_tag %>
